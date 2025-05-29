@@ -72,6 +72,30 @@ describe('CalculatorService', () => {
     services.constructNumber('5');
     expect(services.resultText()).toBe('1.5');
   });
+  it('should handle sign change correctly', () => {
+    services.constructNumber('1');
+    services.constructNumber('+/-');
+    expect(services.resultText()).toBe('-1');
+    services.constructNumber('-1');
+    services.constructNumber('+/-');
+    expect(services.resultText()).toBe('1');
+  });
+  // it('should backspace correctly', () => {
+  //   services.resultText.set('123');
+  //   services.constructNumber('Backspace');
+  //   expect(services.resultText()).toBe('12');
+  //   services.constructNumber('Backspace');
+  //   expect(services.resultText()).toBe('1');
+  //   services.constructNumber('Backspace');
+  //   expect(services.resultText()).toBe('0');
+  // });
+  it('should handle mac length', () => {
+    for (let i = 0; i < 10; i++) {
+      services.constructNumber('1');
+    }
+    services.constructNumber('1');
+    expect(services.resultText().length).toBe(10);
+  });
   // it('should handle decimal point correctly stating zero', () => {
   //   services.constructNumber('0');
   //   services.constructNumber('.');
